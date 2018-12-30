@@ -57,3 +57,4 @@ source Coin_manager_tb.tcl
 close_sim
 launch_simulation
 source Coin_manager_tb.tcl
+close_sim
