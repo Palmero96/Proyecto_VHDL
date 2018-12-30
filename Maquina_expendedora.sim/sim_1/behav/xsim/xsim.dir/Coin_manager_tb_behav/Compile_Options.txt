@@ -1,1 +1,0 @@
--wto "1efd074422f545bc9ae36cb45b908425" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "Coin_manager_tb_behav" "xil_defaultlib.Coin_manager_tb" -log "elaborate.log" 

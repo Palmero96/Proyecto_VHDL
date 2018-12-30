@@ -1,6 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../Maquina_expendedora.srcs/sources_1/new/Coin_manager.vhd" \
-
-# Do not sort compile order
-nosort
