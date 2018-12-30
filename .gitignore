@@ -84,3 +84,12 @@
 !*.elf
 !*.bmm
 !*.xmp
+<<<<<<< HEAD
+########
+=======
+#########
+>>>>>>> Top
+Maquina_expendedora.cache/
+Maquina_expendedora.hw/
+Maquina_expendedora.ip_user_files/
+Maquina_expendedora.sim/
