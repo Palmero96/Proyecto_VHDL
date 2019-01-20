@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="38" Path="C:/Users/Emilio/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.xpr">
+<Project Version="7" Minor="38" Path="C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="357ab4123a6f4b7988e7cbbff9d84f86"/>
@@ -153,13 +153,6 @@
       <File Path="$PSRCDIR/sim_1/imports/Desktop/State_machine_tb.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/imports/Desktop/State_machine_tb.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../Desktop/State_machine_tb.vhd"/>
           <Attr Name="ImportTime" Val="1546210628"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -182,9 +175,29 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/new/Returns_tb.vhd">
+      <File Path="$PSRCDIR/sim_1/imports/new/Standby_tb.vhd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/Standby_tb.vhd"/>
+          <Attr Name="ImportTime" Val="1548014450"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/imports/new/Show_tb.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/Show_tb.vhd"/>
+          <Attr Name="ImportTime" Val="1548014450"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/imports/new/Decoder_tb.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PSRCDIR/sim_1/new/Decoder_tb.vhd"/>
+          <Attr Name="ImportTime" Val="1548014450"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
