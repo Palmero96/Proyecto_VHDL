@@ -36,7 +36,7 @@ entity Top is
         output_ret : out STD_LOGIC; 
         --Señal de salida para el display    
         display_select : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        mensaje : out STD_LOGIC_VECTOR (7 DOWNTO 0)
+        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0)
     );
 end Top;
 
