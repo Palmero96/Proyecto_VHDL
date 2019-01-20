@@ -10,7 +10,7 @@
 # Journal file: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL\vivado.jou
 #-----------------------------------------------------------
 start_gui
-open_project C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.xpr
+open_project C:/Users/Emilio/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.xpr
 update_compile_order -fileset sources_1
 launch_simulation
 source Top.tcl
