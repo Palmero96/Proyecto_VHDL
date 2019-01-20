@@ -35,9 +35,7 @@ entity Show is
         s5: OUT std_logic_vector(7 downto 0);
         s6: OUT std_logic_vector(7 downto 0);
         s7: OUT std_logic_vector(7 downto 0);
-        s8: OUT std_logic_vector(7 downto 0);
-        
-        trampita: out integer
+        s8: OUT std_logic_vector(7 downto 0)
         );
 end Show;
 
@@ -67,7 +65,6 @@ begin
     ----------------------------------------------
     Conv_dinero: process (dinero, clk)
     begin
-            trampita <= (dinero / 100) rem 10;
             r1 <= (dinero / 100) rem 10;
                 case r1 is
                     when 0 => ssi6 <= "00110000";
