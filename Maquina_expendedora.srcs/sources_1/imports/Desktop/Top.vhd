@@ -25,7 +25,12 @@ entity Top is
         clock : in STD_LOGIC;
         reset : in STD_LOGIC;
         select_order : in STD_LOGIC_VECTOR (2 DOWNTO 0);
-        coin_error : in STD_LOGIC
+        coin_error : in STD_LOGIC;
+        --Sensores de las diferentes monedas
+        sen10c : in STD_LOGIC;
+        sen20c : in STD_LOGIC;
+        sen50c : in STD_LOGIC;
+        sen1e : in STD_LOGIC        
     );
 end Top;
 
@@ -49,9 +54,22 @@ architecture Structural of Top is
     );
     end component;
     
+    component Coin_manager PORT(
+        sensor_10c : in STD_LOGIC;
+        sensor_20c : in STD_LOGIC;
+        sensor_50c : in STD_LOGIC;
+        sensor_1e : in STD_LOGIC;
+        rst: in STD_LOGIC;
+        clk: in STD_LOGIC;
+        salida_overflow : out STD_LOGIC;
+        salida_correcto : out STD_LOGIC;
+        counter : out INTEGER
+    );
+    end component;
 --------------------------------------
 --Declaracion de señales usados en Top
 --------------------------------------
+--Señales usadas por State Machine
     signal exact_amount : STD_LOGIC;
     signal overflow : STD_LOGIC;
     signal end_of_return : STD_LOGIC;
@@ -60,7 +78,8 @@ architecture Structural of Top is
     signal show : STD_LOGIC;
     signal output : STD_LOGIC;
     signal returns : STD_LOGIC;
-    
+--Señales usadas por Coin_manager
+    signal counter : integer;    
 begin
 ----------------------------------------------------
 --Instanciación de la máquina de estados del sistema
@@ -80,4 +99,19 @@ begin
         returns => returns 
     );
 
+---------------------------------------------------------------------
+--Instanciacion de la entidad Coin Manager, gestor del uso de monedas
+---------------------------------------------------------------------
+    Inst_cm: Coin_manager PORT MAP(
+        sensor_10c => Sen10c,
+        sensor_20c => Sen20c,
+        sensor_50c => Sen50c,
+        sensor_1e => Sen1e,
+        rst => reset,
+        clk => clock,
+        salida_overflow => overflow,
+        salida_correcto => exact_amount,
+        counter => counter
+    );
+                
 end Structural;
