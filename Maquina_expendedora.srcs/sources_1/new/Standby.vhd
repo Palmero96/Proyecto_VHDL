@@ -94,17 +94,15 @@ begin
         show: process (clk, standby_en)
             begin 
             if (rising_edge(Clk))then
-                output_standby <= soutput;
-                if (standby_en = '1') then   
-                       Mens0 <=salida0;
-                       Mens1 <=salida1;
-                       Mens2 <=salida2;
-                       Mens3 <=salida3;  
-                       Mens4 <=salida4;
-                       Mens5 <=salida5;
-                       Mens6 <=salida6;
-                       Mens7 <=salida7;             
-                end if;
+                output_standby <= soutput; 
+                Mens0 <=salida0;
+                Mens1 <=salida1;
+                Mens2 <=salida2;
+                Mens3 <=salida3;  
+                Mens4 <=salida4;
+                Mens5 <=salida5;
+                Mens6 <=salida6;
+                Mens7 <=salida7;    
             end if;
         end process;
 

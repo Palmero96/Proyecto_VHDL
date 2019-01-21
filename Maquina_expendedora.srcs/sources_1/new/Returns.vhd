@@ -63,16 +63,14 @@ begin
     begin
         if (rising_edge(clk)) then
             end_of_returns <= eor;
-            if (returns_en = '1') then
-                s1 <= ss1;
-                s2 <= ss2;
-                s3 <= ss3;
-                s4 <= ss4;
-                s5 <= ss5;
-                s6 <= ss6;
-                s7 <= ss7;
-                s8 <= ss8;
-            end if;
+            s1 <= ss1;
+            s2 <= ss2;
+            s3 <= ss3;
+            s4 <= ss4;
+            s5 <= ss5;
+            s6 <= ss6;
+            s7 <= ss7;
+            s8 <= ss8;
             output_ret <= soutput_ret;
         end if;
     end process;

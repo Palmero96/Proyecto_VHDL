@@ -65,16 +65,14 @@ asig_proc: process(clk)
     begin
         if (rising_edge(clk)) then
             sacarbebida <= sbebida;
-            if (output_en = '1') then
-                mens0 <= smens0;
-                mens1 <= smens1;
-                mens2 <= smens2;
-                mens3 <= smens3;
-                mens4 <= smens4;
-                mens5 <= smens5;
-                mens6 <= smens6;
-                mens7 <= smens7;
-            end if;
+            mens0 <= smens0;
+            mens1 <= smens1;
+            mens2 <= smens2;
+            mens3 <= smens3;
+            mens4 <= smens4;
+            mens5 <= smens5;
+            mens6 <= smens6;
+            mens7 <= smens7;
         end if;
     end process;
 

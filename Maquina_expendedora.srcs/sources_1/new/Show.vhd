@@ -117,16 +117,14 @@ begin
      begin
         if (rising_edge(clk)) then
             output_s <= sshow;
-            if (show_en = '1') then
-                s1 <= si1;
-                s2 <= si2;
-                s3 <= si3;
-                s4 <= si4;
-                s5 <= si5;
-                s6 <= si6;
-                s7 <= si7;
-                s8 <= si8;
-            end if;
+            s1 <= si1;
+            s2 <= si2;
+            s3 <= si3;
+            s4 <= si4;
+            s5 <= si5;
+            s6 <= si6;
+            s7 <= si7;
+            s8 <= si8;
         end if;
      END process;
  
