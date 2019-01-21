@@ -17,8 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param synth.incrementalSynthesisCache C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/.Xil/Vivado-4188-DESKTOP-4MBK26K/incrSyn
-set_param xicom.use_bs_reader 1
+set_param synth.incrementalSynthesisCache C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/.Xil/Vivado-9436-DESKTOP-4MBK26K/incrSyn
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
@@ -35,6 +34,7 @@ set_property ip_output_repo c:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maqui
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library xil_defaultlib {
   C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/imports/Desktop/Coin_manager.vhd
+  C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Debouncer.vhd
   C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Decoder.vhd
   C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Display.vhd
   C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Multiplexor.vhd
