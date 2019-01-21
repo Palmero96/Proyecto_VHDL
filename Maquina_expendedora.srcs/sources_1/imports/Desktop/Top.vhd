@@ -26,6 +26,7 @@ entity Top is
         reset : in STD_LOGIC;
         select_order : in STD_LOGIC_VECTOR (2 DOWNTO 0);
         coin_error : in STD_LOGIC;
+        end_of_output : in STD_LOGIC;
         --Sensores de las diferentes monedas
         sen10c : in STD_LOGIC;
         sen20c : in STD_LOGIC;
@@ -34,9 +35,13 @@ entity Top is
         --Señales para las salidas necesarias
         output_sal : out STD_LOGIC;
         output_ret : out STD_LOGIC; 
+        output_sho : out STD_LOGIC;
+        output_stb : out STD_LOGIC;
         --Señal de salida para el display    
         display_select : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0)
+        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+        
+        trampita : out STD_LOGIC_VECTOR (7 DOWNTO 0)
     );
 end Top;
 
@@ -99,7 +104,8 @@ architecture Structural of Top is
         Mens4 : out STD_LOGIC_vector(7 downto 0);
         Mens5 : out STD_LOGIC_vector(7 downto 0);
         Mens6 : out STD_LOGIC_vector(7 downto 0);
-        Mens7 : out STD_LOGIC_vector(7 downto 0)
+        Mens7 : out STD_LOGIC_vector(7 downto 0);
+        output_standby : out STD_LOGIC
     );
     end component;
     
@@ -115,7 +121,8 @@ architecture Structural of Top is
         s5: OUT std_logic_vector(7 downto 0);
         s6: OUT std_logic_vector(7 downto 0);
         s7: OUT std_logic_vector(7 downto 0);
-        s8: OUT std_logic_vector(7 downto 0)
+        s8: OUT std_logic_vector(7 downto 0);
+        output_s : OUT std_logic
         );
     end component;
     
@@ -130,7 +137,8 @@ architecture Structural of Top is
         s6 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         s7 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         s8 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        end_of_returns : out STD_LOGIC
+        end_of_returns : out STD_LOGIC;
+        output_ret : out STD_LOGIC
     );
     end component;
     
@@ -161,7 +169,6 @@ architecture Structural of Top is
     signal exact_amount : STD_LOGIC;
     signal overflow : STD_LOGIC;
     signal end_of_return : STD_LOGIC;
-    signal end_of_output : STD_LOGIC;
     signal s_standby : STD_LOGIC;
     signal s_show : STD_LOGIC;
     signal s_output : STD_LOGIC;
@@ -169,7 +176,7 @@ architecture Structural of Top is
 --Señales usadas por Coin_manager
     signal counter : integer;    
 --Señales del mensaje mostrado para el display
-    signal m1 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal m1 : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00110000";
     signal m2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal m3 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal m4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -251,7 +258,8 @@ begin
         Mens4 => m5,
         Mens5 => m6,
         Mens6 => m7,
-        Mens7 => m8
+        Mens7 => m8,
+        output_standby => output_stb
     );
     
 ----------------------------------------------------------------------
@@ -268,7 +276,8 @@ begin
         s5 => m5,
         s6 => m6,
         s7 => m7,
-        s8 => m8
+        s8 => m8,
+        output_s => output_sho
     );
     
 ----------------------------------------------------------------------
@@ -285,7 +294,8 @@ begin
         s6 => m6,
         s7 => m7,
         s8 => m8,
-        end_of_returns => end_of_return
+        end_of_returns => end_of_return,
+        output_ret => output_ret
     );
     
 ----------------------------------------------------------------------
@@ -347,5 +357,12 @@ begin
         display_number => mensaje,
         display_selection => display_select
     );
+    
+    e: process(clock)
+    begin
+        if (rising_edge(clock)) then
+        trampita <= m1;
+        end if;
+    end process;
         
 end Structural;

@@ -49,48 +49,63 @@ entity Output is
 end Output;
 
 architecture Behavioral of Output is
-
-
-
-
-
+    signal smens0 : std_logic_vector (7 downto 0);
+    signal smens1 : std_logic_vector (7 downto 0);
+    signal smens2 : std_logic_vector (7 downto 0);
+    signal smens3 : std_logic_vector (7 downto 0);
+    signal smens4 : std_logic_vector (7 downto 0);
+    signal smens5 : std_logic_vector (7 downto 0);
+    signal smens6 : std_logic_vector (7 downto 0);
+    signal smens7 : std_logic_vector (7 downto 0);
+    
+    signal sbebida : std_logic;
 begin
 
-
-asig_proc: process(codbebida, clk)
+asig_proc: process(clk)
     begin
         if (rising_edge(clk)) then
-           mens0 <= "01010011";       --S
-           mens1 <= "01000001";       --A
-           mens2 <= "01001100";       --L
-           mens3 <= "01000101";       --E	
-           mens4 <= "01000000";        -- 
-           if (codbebida(0)= '0')then
-               mens5 <= "00000000" ;
-           else
-               mens5 <="00000001";
-               end if;    
- 
-           if (codbebida(1)= '0')then
-               mens6 <= "00000000" ;
-           else
-               mens6 <="00000001";
- 
-               end if; 
-           if (codbebida(2)= '0')then
-               mens7 <= "00000000" ;
-           else
-               mens7 <="00000001";
-           end if;                    
+            sacarbebida <= sbebida;
+            if (output_en = '1') then
+                mens0 <= smens0;
+                mens1 <= smens1;
+                mens2 <= smens2;
+                mens3 <= smens3;
+                mens4 <= smens4;
+                mens5 <= smens5;
+                mens6 <= smens6;
+                mens7 <= smens7;
+            end if;
         end if;
     end process;
 
-sacar_proc: process(output_en)
+sacar_proc: process(output_en, codbebida)
     begin
         if (output_en='1') then
-           sacarbebida <= '1';
+           sbebida <= '1';
+           smens0 <= "01010011";       --S
+           smens1 <= "01000001";       --A
+           smens2 <= "01001100";       --L
+           smens3 <= "01000101";       --E    
+           smens4 <= "01000000";        -- 
+           if (codbebida(0)= '0')then
+               smens5 <= "00000000" ;
+           else
+               smens5 <="00000001";
+               end if;    
+ 
+           if (codbebida(1)= '0')then
+               smens6 <= "00000000" ;
+           else
+               smens6 <="00000001";
+
+               end if; 
+           if (codbebida(2)= '0')then
+               smens7 <= "00000000" ;
+           else
+               smens7 <="00000001";
+           end if;    
         elsif(output_en ='0')then
-           sacarbebida <= '0';
+           sbebida <= '0';
         end if;
     end process;
 

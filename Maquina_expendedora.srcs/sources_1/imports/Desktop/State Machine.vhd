@@ -35,7 +35,8 @@ end State_machine;
 
 architecture Behavioral of State_machine is
     type state_type is (S_STANDBY, S_SHOW, S_OUTPUT, S_RETURNS);
-    signal state, next_state : state_type;
+    signal state : state_type := S_STANDBY;
+    signal next_state : state_type;
 begin
 ------------------------------------------------------------------------------------
 --Se define el uso del botón reset así como se sincroniza el proceso con el reloj.

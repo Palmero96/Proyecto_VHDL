@@ -35,7 +35,8 @@ entity Show is
         s5: OUT std_logic_vector(7 downto 0);
         s6: OUT std_logic_vector(7 downto 0);
         s7: OUT std_logic_vector(7 downto 0);
-        s8: OUT std_logic_vector(7 downto 0)
+        s8: OUT std_logic_vector(7 downto 0);
+        output_s : OUT std_logic
         );
 end Show;
 
@@ -48,6 +49,7 @@ architecture Behavioral of Show is
     signal si6: STD_LOGIC_VECTOR(7 DOWNTO 0);
     signal si7: STD_LOGIC_VECTOR(7 DOWNTO 0);
     signal si8: STD_LOGIC_VECTOR(7 DOWNTO 0);
+    signal sshow : STD_LOGIC;
     
     --Señales usadas para calcular el numero
     signal r1 : integer range 0 to 9;
@@ -114,14 +116,17 @@ begin
      Sincro_proc: process(clk)
      begin
         if (rising_edge(clk)) then
-            s1 <= si1;
-            s2 <= si2;
-            s3 <= si3;
-            s4 <= si4;
-            s5 <= si5;
-            s6 <= si6;
-            s7 <= si7;
-            s8 <= si8;
+            output_s <= sshow;
+            if (show_en = '1') then
+                s1 <= si1;
+                s2 <= si2;
+                s3 <= si3;
+                s4 <= si4;
+                s5 <= si5;
+                s6 <= si6;
+                s7 <= si7;
+                s8 <= si8;
+            end if;
         end if;
      END process;
  
@@ -131,14 +136,17 @@ begin
      Show_proc: process(clk)
          begin
               if (show_en = '1') then
-               si1 <= "01001101";  --M
-               si2 <= "01001111";  --O
-               si3 <= "01001110";  --N
-               si4 <= "01000101";  --E
-               si5 <= "01011001";  --Y
-               si6 <= ssi6;
-               si7 <= ssi7;
-               si8 <= ssi8;
+                  sshow <= '1';
+                  si1 <= "01001101";  --M
+                  si2 <= "01001111";  --O
+                  si3 <= "01001110";  --N
+                  si4 <= "01000101";  --E
+                  si5 <= "01011001";  --Y
+                  si6 <= ssi6;
+                  si7 <= ssi7;
+                  si8 <= ssi8;
+              else 
+                  sshow <= '0';
          end if;
     end process;
 

@@ -33,12 +33,14 @@ entity Returns is
         s6 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         s7 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         s8 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        end_of_returns : out STD_LOGIC
+        end_of_returns : out STD_LOGIC;
+        output_ret : out STD_LOGIC
     );
 end Returns;
 
 architecture Behavioral of Returns is
     signal eor : STD_LOGIC := '0';
+    signal soutput_ret : STD_LOGIC;
     -------------------------------------------
     --Señales del mensaje para el display
     -------------------------------------------
@@ -57,18 +59,21 @@ begin
     --------------------------------------------
     ----Sincronizacion de la salida con clk-----
     --------------------------------------------
-    sync: process(clk)
+    sync: process(clk, returns_en)
     begin
         if (rising_edge(clk)) then
             end_of_returns <= eor;
-            s1 <= ss1;
-            s2 <= ss2;
-            s3 <= ss3;
-            s4 <= ss4;
-            s5 <= ss5;
-            s6 <= ss6;
-            s7 <= ss7;
-            s8 <= ss8;
+            if (returns_en = '1') then
+                s1 <= ss1;
+                s2 <= ss2;
+                s3 <= ss3;
+                s4 <= ss4;
+                s5 <= ss5;
+                s6 <= ss6;
+                s7 <= ss7;
+                s8 <= ss8;
+            end if;
+            output_ret <= soutput_ret;
         end if;
     end process;
     
@@ -87,6 +92,7 @@ begin
             ss6 <= "01001110"; --N
             ss7 <= "01001001"; --I
             ss8 <= "01001110"; --N
+            soutput_ret <= '1';
         else 
             ss1 <= ss1;
             ss2 <= ss2;
@@ -96,6 +102,7 @@ begin
             ss6 <= ss6;
             ss7 <= ss7;
             ss8 <= ss8;
+            soutput_ret <= '0';
         end if;
     end process;
     

@@ -24,6 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
     
 entity Decoder is
     PORT(
+        clk: in STD_LOGIC;
         code: in STD_LOGIC_VECTOR(7 DOWNTO 0);
         led : out STD_LOGIC_VECTOR(6 DOWNTO 0)
     );

@@ -46,7 +46,8 @@ architecture Behavioral of Standby_tb is
        Mens4 : out STD_LOGIC_vector(7 downto 0);
        Mens5 : out STD_LOGIC_vector(7 downto 0);
        Mens6 : out STD_LOGIC_vector(7 downto 0);
-       Mens7 : out STD_LOGIC_vector(7 downto 0)
+       Mens7 : out STD_LOGIC_vector(7 downto 0);
+       output_standby : out STD_LOGIC
        );
   end component;
   
@@ -62,7 +63,7 @@ architecture Behavioral of Standby_tb is
      signal mens5: std_logic_vector (7 downto 0);
      signal mens6: std_logic_vector (7 downto 0);
      signal mens7: std_logic_vector (7 downto 0); 
-     
+     signal output_standby : std_logic;
      
 begin
 
@@ -77,7 +78,8 @@ begin
        Mens4=>Mens4,
        Mens5=>Mens5,
        Mens6 =>Mens6,
-       Mens7=>Mens7
+       Mens7=>Mens7,
+       output_standby => output_standby
        );
        
        

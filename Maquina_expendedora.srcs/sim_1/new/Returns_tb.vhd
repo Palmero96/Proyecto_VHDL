@@ -35,7 +35,8 @@ architecture Behavioral of Returns_tb is
         s6 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         s7 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         s8 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        end_of_returns : out STD_LOGIC
+        end_of_returns : out STD_LOGIC;
+        output_ret : out STD_LOGIC
     );
     end component;
     
@@ -52,6 +53,7 @@ architecture Behavioral of Returns_tb is
     signal s7 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal s8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal end_of_returns : STD_LOGIC;
+    signal output_ret : STD_LOGIC;
 begin
     -----------------------
     --UUT : UNIT UNDER TEST
@@ -67,7 +69,8 @@ begin
         s6 => s6,
         s7 => s7,
         s8 => s8,
-        end_of_returns => end_of_returns
+        end_of_returns => end_of_returns,
+        output_ret => output_ret
     );
     
     -------------------------------------------
