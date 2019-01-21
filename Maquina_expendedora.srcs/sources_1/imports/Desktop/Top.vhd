@@ -39,9 +39,7 @@ entity Top is
         output_stb : inout STD_LOGIC;
         --Señal de salida para el display    
         display_select : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0);
-        
-        trampita : out STD_LOGIC_VECTOR (7 DOWNTO 0)
+        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0)
     );
 end Top;
 
@@ -500,12 +498,4 @@ begin
         ss6 => m7,
         ss7 => m8
     );        
-        
-    e: process(clock)
-    begin
-        if (rising_edge(clock)) then
-        trampita <= m1;
-        end if;
-    end process;
-        
 end Structural;

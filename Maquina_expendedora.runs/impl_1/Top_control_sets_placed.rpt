@@ -1,0 +1,78 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+| Date         : Mon Jan 21 11:55:19 2019
+| Host         : DESKTOP-4MBK26K running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
+| Design       : Top
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    12 |
+| Unused register locations in slices containing registers |    30 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      2 |            2 |
+|      6 |            1 |
+|    16+ |            9 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             242 |           52 |
+| No           | No                    | Yes                    |              64 |            8 |
+| No           | Yes                   | No                     |             240 |           44 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++---------------------------------+---------------+----------------------------------+------------------+----------------+
+|           Clock Signal          | Enable Signal |         Set/Reset Signal         | Slice Load Count | Bel Load Count |
++---------------------------------+---------------+----------------------------------+------------------+----------------+
+|  Inst_cm/correcto_reg/G0        |               |                                  |                1 |              2 |
+|  Inst_cm/overflow0_carry__2_n_2 |               | Inst_cm/overflow_reg_i_1_n_2     |                1 |              2 |
+|  Inst_ss/s_output               |               |                                  |                1 |              6 |
+|  Inst_ss/E[0]                   |               |                                  |                5 |             24 |
+|  clock_IBUF_BUFG                |               | Inst_sb/output_stb               |                7 |             26 |
+|  clock_IBUF_BUFG                |               | Inst_Dis/cnt[31]_i_1_n_2         |                8 |             62 |
+|  n_1_2198_BUFG                  |               | Inst_cm/contador_reg[31]_i_2_n_2 |               11 |             64 |
+|  n_0_1981_BUFG                  |               |                                  |               11 |             64 |
+|  clock_IBUF_BUFG                |               | n_0_1981_BUFG                    |                8 |             64 |
+|  correcto                       |               |                                  |               15 |             64 |
+|  clock_IBUF_BUFG                |               |                                  |               19 |             82 |
+|  clock_IBUF_BUFG                |               | Inst_cm/p_0_in_0                 |               17 |             86 |
++---------------------------------+---------------+----------------------------------+------------------+----------------+
+
+

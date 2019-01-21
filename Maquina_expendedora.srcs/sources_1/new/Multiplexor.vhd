@@ -1,13 +1,11 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: UPM 
+-- Engineer: Álvaro Palmero, Emilio Miralles y Emilio Peñaranda
 -- 
 -- Create Date: 21.01.2019 01:09:21
--- Design Name: 
 -- Module Name: Multiplexor - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
+-- Project Name: Maquina Expendedora
+-- Target Devices: Nexys 4 DDR
 -- Description: 
 -- 
 -- Dependencies: 
@@ -149,6 +147,15 @@ begin
                         sig5 <= re5;
                         sig6 <= re6;
                         sig7 <= re7;
+                    else 
+                        sig0 <= "01000101";
+                        sig1 <= "01000101";
+                        sig2 <= "01000101";
+                        sig3 <= "01000101";
+                        sig4 <= "01000101";
+                        sig5 <= "01000101";
+                        sig6 <= "01000101";
+                        sig7 <= "01000101";
                     end if;
                 end if;
             end if;

@@ -39,9 +39,7 @@ architecture Behavioral of Top_tb is
         output_sho : inout STD_LOGIC;
         output_stb : inout STD_LOGIC; 
         display_select : out STD_LOGIC_VECTOR (7 DOWNTO 0);
-        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0);
-        
-        trampita : out STD_LOGIC_VECTOR(7 DOWNTO 0)
+        mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0)
     );
     end component;
     
@@ -62,8 +60,6 @@ architecture Behavioral of Top_tb is
     signal output_stb : STD_LOGIC;
     signal display_select : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal mensaje : STD_LOGIC_VECTOR (6 DOWNTO 0);
-    
-    signal trampita : STD_LOGIC_VECTOR (7 DOWNTO 0);
 begin
     ------------------------------------
     --Declaramos el uut: Unit under test
@@ -83,8 +79,7 @@ begin
         output_sho => output_sho,
         output_stb => output_stb,
         display_select => display_select,
-        mensaje => mensaje,
-        trampita => trampita
+        mensaje => mensaje
     );
     
     -------------------------------------
@@ -99,9 +94,9 @@ begin
     --Rst
     rs_tb: process
     begin
-        reset <= '0';
-        wait for 750 ns;
         reset <= '1';
+        wait for 750 ns;
+        reset <= '0';
         wait for 50 ns;
     end process;
     

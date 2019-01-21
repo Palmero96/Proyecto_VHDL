@@ -51,7 +51,7 @@ begin
     sync_proc: process(clk, rst)
     begin
         if (rising_edge(clk)) then
-            if (rst = '1') then
+            if (rst = '0') then
                 Counter <= 0;
                 Salida_overflow <= '0';
                 Salida_correcto <= '0';

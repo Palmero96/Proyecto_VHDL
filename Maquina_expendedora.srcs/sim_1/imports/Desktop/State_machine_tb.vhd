@@ -85,9 +85,9 @@ begin
 --Reset   
     rst_tb: process
     begin
-        rst <= '0';
-        wait for 200 ns;
         rst <= '1';
+        wait for 200 ns;
+        rst <= '0';
         wait for 10 ns;
     end process;
 --Order number

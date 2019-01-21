@@ -76,9 +76,9 @@ begin
     
     rst_tb: process
     begin
-        rst <= '0';
-        wait for 500 ns;
         rst <= '1';
+        wait for 500 ns;
+        rst <= '0';
         wait for 20 ns;
     end process;
     
