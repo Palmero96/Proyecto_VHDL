@@ -33,10 +33,10 @@ entity Top is
         sen50c : in STD_LOGIC;
         sen1e : in STD_LOGIC;
         --Señales para las salidas necesarias
-        output_sal : out STD_LOGIC;
-        output_ret : out STD_LOGIC; 
-        output_sho : out STD_LOGIC;
-        output_stb : out STD_LOGIC;
+        output_sal : inout STD_LOGIC;
+        output_ret : inout STD_LOGIC; 
+        output_sho : inout STD_LOGIC;
+        output_stb : inout STD_LOGIC;
         --Señal de salida para el display    
         display_select : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0);
@@ -162,6 +162,61 @@ architecture Structural of Top is
         display_selection : out STD_LOGIC_VECTOR (7 DOWNTO 0)
     );
     end component;
+    
+    component Multiplexor PORT(
+        clk : in STD_LOGIC;
+        --Entradas Standby
+        sb0 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb1 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb2 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb3 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb4 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb5 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb6 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sb7 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        --Entradas Show
+        sh0 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh1 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh2 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh3 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh4 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh5 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh6 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        sh7 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        --Entradas Output
+        ou0 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou1 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou2 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou3 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou4 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou5 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou6 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ou7 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        --Entradas Returns
+        re0 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re1 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re2 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re3 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re4 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re5 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re6 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        re7 : in STD_LOGIC_VECTOR(7 DOWNTO 0);
+        --Entradas Seleccionadoras
+        sel_sb : in STD_LOGIC;
+        sel_sh : in STD_LOGIC;
+        sel_ou : in STD_LOGIC;
+        sel_re : in STD_LOGIC;
+        --Salidas 
+        ss0 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss1 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss2 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss3 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss4 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss5 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss6 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
+        ss7 : out STD_LOGIC_VECTOR(7 DOWNTO 0)
+    );
+    end component;
 --------------------------------------
 --Declaracion de señales usados en Top
 --------------------------------------
@@ -176,7 +231,44 @@ architecture Structural of Top is
 --Señales usadas por Coin_manager
     signal counter : integer;    
 --Señales del mensaje mostrado para el display
-    signal m1 : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00110000";
+    --Señales Standby
+    signal sb1 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb3 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb5 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb6 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb7 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sb8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    --Señales Show
+    signal sh1 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh3 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh5 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh6 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh7 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal sh8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    --Señales Output
+    signal ou1 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou3 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou5 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou6 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou7 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal ou8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    --Señales Returns
+    signal re1 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re3 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re5 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re6 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re7 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    signal re8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
+    --Señales Mult
+    signal m1 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal m2 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal m3 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     signal m4 : STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -235,14 +327,14 @@ begin
         clk => clock,
         codbebida => select_order,
         sacarbebida => output_sal,
-        mens0 => m1,
-        mens1 => m2,
-        mens2 => m3,
-        mens3 => m4,
-        mens4 => m5,
-        mens5 => m6,
-        mens6 => m7,
-        mens7 => m8
+        mens0 => ou1,
+        mens1 => ou2,
+        mens2 => ou3,
+        mens3 => ou4,
+        mens4 => ou5,
+        mens5 => ou6,
+        mens6 => ou7,
+        mens7 => ou8
     );
     
 ----------------------------------------------------------------------
@@ -251,14 +343,14 @@ begin
     Inst_sb: Standby PORT MAP(
         clk => clock,
         standby_en => s_standby,
-        Mens0 => m1,
-        Mens1 => m2,
-        Mens2 => m3,
-        Mens3 => m4,
-        Mens4 => m5,
-        Mens5 => m6,
-        Mens6 => m7,
-        Mens7 => m8,
+        Mens0 => sb1,
+        Mens1 => sb2,
+        Mens2 => sb3,
+        Mens3 => sb4,
+        Mens4 => sb5,
+        Mens5 => sb6,
+        Mens6 => sb7,
+        Mens7 => sb8,
         output_standby => output_stb
     );
     
@@ -269,14 +361,14 @@ begin
         clk => clock,
         show_en => s_show,
         dinero => counter,
-        s1 => m1,
-        s2 => m2,
-        s3 => m3,
-        s4 => m4,
-        s5 => m5,
-        s6 => m6,
-        s7 => m7,
-        s8 => m8,
+        s1 => sh1,
+        s2 => sh2,
+        s3 => sh3,
+        s4 => sh4,
+        s5 => sh5,
+        s6 => sh6,
+        s7 => sh7,
+        s8 => sh8,
         output_s => output_sho
     );
     
@@ -286,14 +378,14 @@ begin
     Inst_Rt: Returns PORT MAP(
         clk => clock,
         returns_en => s_returns,
-        s1 => m1,
-        s2 => m2,
-        s3 => m3,
-        s4 => m4,
-        s5 => m5,
-        s6 => m6,
-        s7 => m7,
-        s8 => m8,
+        s1 => re1,
+        s2 => re2,
+        s3 => re3,
+        s4 => re4,
+        s5 => re5,
+        s6 => re6,
+        s7 => re7,
+        s8 => re8,
         end_of_returns => end_of_return,
         output_ret => output_ret
     );
@@ -358,6 +450,57 @@ begin
         display_selection => display_select
     );
     
+--------------------------------------------------------------
+-----------Instanciacion de la entidad Multiplexor------------
+--------------------------------------------------------------
+    Inst_mult: Multiplexor PORT MAP(
+        clk => clock,
+        sb0 => sb1,
+        sb1 => sb2,
+        sb2 => sb3,
+        sb3 => sb4,
+        sb4 => sb5,
+        sb5 => sb6,
+        sb6 => sb7,
+        sb7 => sb8,
+        sh0 => sh1,
+        sh1 => sh2,
+        sh2 => sh3,
+        sh3 => sh4,
+        sh4 => sh5,
+        sh5 => sh6,
+        sh6 => sh7,
+        sh7 => sh8,
+        ou0 => ou1,
+        ou1 => ou2,
+        ou2 => ou3,
+        ou3 => ou4,
+        ou4 => ou5,
+        ou5 => ou6,
+        ou6 => ou7,
+        ou7 => ou8,
+        re0 => re1,
+        re1 => re2,
+        re2 => re3,
+        re3 => re4,
+        re4 => re5,
+        re5 => re6,
+        re6 => re7,
+        re7 => re8,
+        sel_sb => output_stb,
+        sel_sh => output_sho,
+        sel_ou => output_sal,
+        sel_re => output_ret,
+        ss0 => m1,
+        ss1 => m2,
+        ss2 => m3,
+        ss3 => m4,
+        ss4 => m5,
+        ss5 => m6,
+        ss6 => m7,
+        ss7 => m8
+    );        
+        
     e: process(clock)
     begin
         if (rising_edge(clock)) then

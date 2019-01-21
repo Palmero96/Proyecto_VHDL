@@ -34,10 +34,10 @@ architecture Behavioral of Top_tb is
         sen20c : in STD_LOGIC;
         sen50c : in STD_LOGIC;
         sen1e : in STD_LOGIC;
-        output_sal : out STD_LOGIC;
-        output_ret : out STD_LOGIC;
-        output_sho : out STD_LOGIC;
-        output_stb : out STD_LOGIC; 
+        output_sal : inout STD_LOGIC;
+        output_ret : inout STD_LOGIC;
+        output_sho : inout STD_LOGIC;
+        output_stb : inout STD_LOGIC; 
         display_select : out STD_LOGIC_VECTOR (7 DOWNTO 0);
         mensaje : out STD_LOGIC_VECTOR (6 DOWNTO 0);
         
