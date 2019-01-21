@@ -2,28 +2,45 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Mon Jan 21 10:54:04 2019
-# Process ID: 7728
+# Start of session at: Mon Jan 21 20:28:42 2019
+# Process ID: 9436
 # Current directory: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12680 C:\Users\Alvaro\Documents\GitHub\Proyecto_VHDL\Maquina_expendedora.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9172 C:\Users\Alvaro\Documents\GitHub\Proyecto_VHDL\Maquina_expendedora.xpr
 # Log file: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/vivado.log
 # Journal file: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.xpr
 update_compile_order -fileset sources_1
+close [ open C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Debouncer.vhd w ]
+add_files C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Debouncer.vhd
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sim_1/new/Debouncer_tb.vhd w ]
+add_files -fileset sim_1 C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sim_1/new/Debouncer_tb.vhd
+update_compile_order -fileset sim_1
 # Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
 set_property source_mgmt_mode None [current_project]
-set_property top Multiplexor_tb [get_filesets sim_1]
+set_property top Debouncer_tb [get_filesets sim_1]
 set_property top_lib xil_defaultlib [get_filesets sim_1]
 # Re-enabling previously disabled source management mode.
 set_property source_mgmt_mode All [current_project]
 update_compile_order -fileset sim_1
 launch_simulation
-source Multiplexor_tb.tcl
+source Debouncer_tb.tcl
+update_compile_order -fileset sources_1
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top Coin_manager_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+source Coin_manager_tb.tcl
 close_sim
 launch_simulation
-source Multiplexor_tb.tcl
+source Coin_manager_tb.tcl
 # Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
 set_property source_mgmt_mode None [current_project]
 set_property top Top_tb [get_filesets sim_1]
@@ -33,37 +50,20 @@ set_property source_mgmt_mode All [current_project]
 update_compile_order -fileset sim_1
 launch_simulation
 source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
 synth_design -rtl -name rtl_1
-close_sim
-close_sim
-launch_simulation
-source Top_tb.tcl
-launch_runs synth_1 -jobs 2
-wait_on_run synth_1
-open_run synth_1 -name synth_1
-refresh_design
-refresh_design
-close_sim
-launch_simulation
-source Top_tb.tcl
-current_design rtl_1
 refresh_design
 reset_run synth_1
 launch_runs synth_1 -jobs 2
 wait_on_run synth_1
-current_design synth_1
 close_design
 open_run synth_1 -name synth_1
 launch_runs impl_1 -jobs 2
 wait_on_run impl_1
+close_design
 open_run impl_1
 launch_runs impl_1 -to_step write_bitstream -jobs 2
 wait_on_run impl_1
-open_hw
+close_sim
+current_sim simulation_3
+close_sim
 close_sim

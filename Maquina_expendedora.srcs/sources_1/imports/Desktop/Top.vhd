@@ -124,7 +124,10 @@ architecture Structural of Top is
         );
     end component;
     
-    component Returns PORT(
+    component Returns 
+    GENERIC(
+        frec : integer := 200000000);
+    PORT(
         clk : in STD_LOGIC;
         returns_en : in STD_LOGIC;
         s1 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -146,7 +149,10 @@ architecture Structural of Top is
     );
     end component;
     
-    component Display PORT(
+    component Display 
+    GENERIC(
+        frec: integer := 50000000);
+    PORT(
         clk : in STD_LOGIC;
         segment_0 : in STD_LOGIC_VECTOR (6 DOWNTO 0);
         segment_1 : in STD_LOGIC_VECTOR (6 DOWNTO 0);
@@ -213,6 +219,14 @@ architecture Structural of Top is
         ss5 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
         ss6 : out STD_LOGIC_VECTOR(7 DOWNTO 0);
         ss7 : out STD_LOGIC_VECTOR(7 DOWNTO 0)
+    );
+    end component;
+    
+    component Debouncer PORT(
+        clk : in STD_LOGIC;
+        rst : in STD_LOGIC;
+        boton_in : in STD_LOGIC;
+        boton_out : out STD_LOGIC
     );
     end component;
 --------------------------------------
@@ -283,6 +297,11 @@ architecture Structural of Top is
     signal d6: STD_LOGIC_VECTOR (6 DOWNTO 0);
     signal d7: STD_LOGIC_VECTOR (6 DOWNTO 0);
     signal d8: STD_LOGIC_VECTOR (6 DOWNTO 0);
+--Señales de los botones tratadas por el debouncer
+    signal debc10 : STD_LOGIC;
+    signal debc20 : STD_LOGIC;
+    signal debc50 : STD_LOGIC;
+    signal debe1 : STD_LOGIC;
 begin
 ----------------------------------------------------
 --Instanciación de la máquina de estados del sistema
@@ -306,10 +325,10 @@ begin
 --Instanciacion de la entidad Coin Manager, gestor del uso de monedas
 ---------------------------------------------------------------------
     Inst_cm: Coin_manager PORT MAP(
-        sensor_10c => Sen10c,
-        sensor_20c => Sen20c,
-        sensor_50c => Sen50c,
-        sensor_1e => Sen1e,
+        sensor_10c => debc10,
+        sensor_20c => debc20,
+        sensor_50c => debc50,
+        sensor_1e => debe1,
         rst => reset,
         clk => clock,
         salida_overflow => overflow,
@@ -373,7 +392,10 @@ begin
 ----------------------------------------------------------------------
 ------------------Instanciacion de la entidad Show--------------------
 ----------------------------------------------------------------------
-    Inst_Rt: Returns PORT MAP(
+    Inst_Rt: Returns 
+    GENERIC MAP(
+        frec => 50000000)
+    PORT MAP(
         clk => clock,
         returns_en => s_returns,
         s1 => re1,
@@ -434,16 +456,19 @@ begin
 ----------------------------------------------------------------------
 -----------------Instanciacion de la entidad Display------------------
 ----------------------------------------------------------------------
-    Inst_Dis: Display PORT MAP(
+    Inst_Dis: Display 
+    GENERIC MAP(
+        frec => 100000)
+    PORT MAP(
         clk => clock,
-        segment_0 => d1,
-        segment_1 => d2,
-        segment_2 => d3,
-        segment_3 => d4,
-        segment_4 => d5,
-        segment_5 => d6,
-        segment_6 => d7,
-        segment_7 => d8,
+        segment_0 => d8,
+        segment_1 => d7,
+        segment_2 => d6,
+        segment_3 => d5,
+        segment_4 => d4,
+        segment_5 => d3,
+        segment_6 => d2,
+        segment_7 => d1,
         display_number => mensaje,
         display_selection => display_select
     );
@@ -498,4 +523,36 @@ begin
         ss6 => m7,
         ss7 => m8
     );        
+    
+-----------------------------------------
+--Instanciaciones de la entidad Debouncer
+-----------------------------------------
+    Inst_d1: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen10c,
+        boton_out => debc10
+    );
+    
+    Inst_d2: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen20c,
+        boton_out => debc20
+    );
+    
+    Inst_d3: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen50c,
+        boton_out => debc50
+    );
+        
+    Inst_d4: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen1e,
+        boton_out => debe1
+    );
+
 end Structural;

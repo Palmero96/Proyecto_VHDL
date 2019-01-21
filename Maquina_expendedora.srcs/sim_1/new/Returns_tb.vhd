@@ -24,7 +24,10 @@ entity Returns_tb is
 end Returns_tb;
 
 architecture Behavioral of Returns_tb is
-    component Returns PORT(
+    component Returns 
+    GENERIC(
+        frec : integer := 50000000);
+    PORT(
         clk : in STD_LOGIC;
         returns_en : in STD_LOGIC;
         s1 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -58,7 +61,10 @@ begin
     -----------------------
     --UUT : UNIT UNDER TEST
     -----------------------
-    uut: Returns PORT MAP(
+    uut: Returns 
+    GENERIC MAP(
+        frec => 50000000)
+    PORT MAP(
         clk => clk,
         returns_en => returns_en,
         s1 => s1,

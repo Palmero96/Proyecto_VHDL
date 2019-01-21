@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1548068045">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1548102161">
   <File Type="OPT-HWDEF" Name="Top.hwdef"/>
   <File Type="ROUTE-BUS-SKEW" Name="Top_bus_skew_routed.rpt"/>
   <File Type="PA-DCP" Name="Top.dcp"/>
@@ -76,6 +76,12 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../../../Desktop/Coin_manager.vhd"/>
         <Attr Name="ImportTime" Val="1546211200"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Debouncer.vhd">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
