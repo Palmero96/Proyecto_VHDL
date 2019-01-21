@@ -221,6 +221,14 @@ architecture Structural of Top is
         ss7 : out STD_LOGIC_VECTOR(7 DOWNTO 0)
     );
     end component;
+    
+    component Debouncer PORT(
+        clk : in STD_LOGIC;
+        rst : in STD_LOGIC;
+        boton_in : in STD_LOGIC;
+        boton_out : out STD_LOGIC
+    );
+    end component;
 --------------------------------------
 --Declaracion de señales usados en Top
 --------------------------------------
@@ -289,6 +297,11 @@ architecture Structural of Top is
     signal d6: STD_LOGIC_VECTOR (6 DOWNTO 0);
     signal d7: STD_LOGIC_VECTOR (6 DOWNTO 0);
     signal d8: STD_LOGIC_VECTOR (6 DOWNTO 0);
+--Señales de los botones tratadas por el debouncer
+    signal debc10 : STD_LOGIC;
+    signal debc20 : STD_LOGIC;
+    signal debc50 : STD_LOGIC;
+    signal debe1 : STD_LOGIC;
 begin
 ----------------------------------------------------
 --Instanciación de la máquina de estados del sistema
@@ -312,10 +325,10 @@ begin
 --Instanciacion de la entidad Coin Manager, gestor del uso de monedas
 ---------------------------------------------------------------------
     Inst_cm: Coin_manager PORT MAP(
-        sensor_10c => Sen10c,
-        sensor_20c => Sen20c,
-        sensor_50c => Sen50c,
-        sensor_1e => Sen1e,
+        sensor_10c => debc10,
+        sensor_20c => debc20,
+        sensor_50c => debc50,
+        sensor_1e => debe1,
         rst => reset,
         clk => clock,
         salida_overflow => overflow,
@@ -510,4 +523,36 @@ begin
         ss6 => m7,
         ss7 => m8
     );        
+    
+-----------------------------------------
+--Instanciaciones de la entidad Debouncer
+-----------------------------------------
+    Inst_d1: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen10c,
+        boton_out => debc10
+    );
+    
+    Inst_d2: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen20c,
+        boton_out => debc20
+    );
+    
+    Inst_d3: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen50c,
+        boton_out => debc50
+    );
+        
+    Inst_d4: Debouncer PORT MAP(
+        clk => clock,
+        rst => reset,
+        boton_in => Sen1e,
+        boton_out => debe1
+    );
+
 end Structural;
