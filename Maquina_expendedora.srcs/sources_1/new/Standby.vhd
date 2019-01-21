@@ -41,8 +41,8 @@ Port ( Clk: in STD_LOGIC;
       Mens4 : out STD_LOGIC_vector(7 downto 0);
       Mens5 : out STD_LOGIC_vector(7 downto 0);
       Mens6 : out STD_LOGIC_vector(7 downto 0);
-      Mens7 : out STD_LOGIC_vector(7 downto 0));
-      
+      Mens7 : out STD_LOGIC_vector(7 downto 0);
+      output_standby : out STD_LOGIC);
 end Standby;
 
 architecture Behavioral of Standby is
@@ -55,7 +55,7 @@ signal salida4: std_logic_vector (7 downto 0);
 signal salida5: std_logic_vector (7 downto 0);
 signal salida6: std_logic_vector (7 downto 0);
 signal salida7: std_logic_vector (7 downto 0);
-
+signal soutput: std_logic;
 
 begin
    -------------------------------------------------------------------------
@@ -73,6 +73,7 @@ begin
                          salida5<= ("01001110");    -- N
                          salida6 <= ("01000111");   -- G                     
                          salida7 <= ("10000000");    --
+                         soutput <= '1';
                     
                    elsif (standby_en = '0') then
                          salida0 <= salida0; 
@@ -83,24 +84,28 @@ begin
                          salida5 <= salida5;                   
                          salida6 <= salida6;                  
                          salida7 <= salida7;
+                         soutput <= '0';
                    end if; 
                      
         end process;
   ------------------------------------------  
           -- Mostramos por pantalla la salida
   ------------------------------------------            
-        show: process (clk)
-               begin 
-             if (rising_edge(Clk))then
-                           Mens0 <=salida0;
-                           Mens1 <=salida1;
-                           Mens2 <=salida2;
-                           Mens3 <=salida3;  
-                           Mens4 <=salida4;
-                           Mens5 <=salida5;
-                           Mens6 <=salida6;
-                           Mens7 <=salida7;             
-                           end if;
+        show: process (clk, standby_en)
+            begin 
+            if (rising_edge(Clk))then
+                output_standby <= soutput;
+                if (standby_en = '1') then   
+                       Mens0 <=salida0;
+                       Mens1 <=salida1;
+                       Mens2 <=salida2;
+                       Mens3 <=salida3;  
+                       Mens4 <=salida4;
+                       Mens5 <=salida5;
+                       Mens6 <=salida6;
+                       Mens7 <=salida7;             
+                end if;
+            end if;
         end process;
 
 -------------------------------------------------------

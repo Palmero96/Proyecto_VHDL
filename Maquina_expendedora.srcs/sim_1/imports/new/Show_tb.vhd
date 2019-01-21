@@ -39,7 +39,7 @@ architecture Behavioral of Show_tb is
        s6: OUT std_logic_vector(7 downto 0);
        s7: OUT std_logic_vector(7 downto 0);
        s8: OUT std_logic_vector(7 downto 0);
-       trampita : out integer
+       output_s : OUT std_logic
    );
    end component;
    
@@ -56,9 +56,8 @@ architecture Behavioral of Show_tb is
       signal s5 : STD_LOGIC_VECTOR(7 downto 0);
       signal s6 : STD_LOGIC_VECTOR(7 downto 0);
       signal s7 : STD_LOGIC_VECTOR(7 downto 0);
-      signal s8 : STD_LOGIC_VECTOR(7 downto 0);  
-      
-      signal trampita : integer; 
+      signal s8 : STD_LOGIC_VECTOR(7 downto 0);
+      signal output_s : STD_LOGIC;
 begin
     ---------------------------------------
     --Declaracion del unit under test (uut)
@@ -75,7 +74,7 @@ begin
         s6 => s6,
         s7 => s7,
         s8 => s8,
-        trampita => trampita
+        output_s => output_s
     );
 
       ------------------
