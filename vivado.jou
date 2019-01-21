@@ -2,83 +2,20 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sun Jan 20 23:58:20 2019
-# Process ID: 12504
+# Start of session at: Mon Jan 21 01:07:47 2019
+# Process ID: 14228
 # Current directory: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15220 C:\Users\Alvaro\Documents\GitHub\Proyecto_VHDL\Maquina_expendedora.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14076 C:\Users\Alvaro\Documents\GitHub\Proyecto_VHDL\Maquina_expendedora.xpr
 # Log file: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/vivado.log
 # Journal file: C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.xpr
 update_compile_order -fileset sources_1
-synth_design -rtl -name rtl_1
-refresh_design
-launch_simulation
-launch_simulation
-source Top_tb.tcl
-run 2 s
-run 2 s
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top Output_tb [get_filesets sim_1]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
+close [ open C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Multiplexor.vhd w ]
+add_files C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sources_1/new/Multiplexor.vhd
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sim_1/new/Multiplexor_tb.vhd w ]
+add_files -fileset sim_1 C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.srcs/sim_1/new/Multiplexor_tb.vhd
 update_compile_order -fileset sim_1
-launch_simulation
-source Output_tb.tcl
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top Returns_tb [get_filesets sim_1]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sim_1
-launch_simulation
-source Returns_tb.tcl
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top Standby_tb [get_filesets sim_1]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sim_1
-launch_simulation
-source Standby_tb.tcl
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top Show_tb [get_filesets sim_1]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sim_1
-launch_simulation
-source Show_tb.tcl
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top Top_tb [get_filesets sim_1]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sim_1
-current_sim simulation_1
-close_sim
-launch_simulation
-source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
-close_sim
-launch_simulation
-source Top_tb.tcl
-refresh_design
