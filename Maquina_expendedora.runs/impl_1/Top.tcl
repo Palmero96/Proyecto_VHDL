@@ -67,6 +67,8 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
+  set_param synth.incrementalSynthesisCache C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/.Xil/Vivado-4188-DESKTOP-4MBK26K/incrSyn
+  set_param xicom.use_bs_reader 1
   open_checkpoint Top_routed.dcp
   set_property webtalk.parent_dir C:/Users/Alvaro/Documents/GitHub/Proyecto_VHDL/Maquina_expendedora.cache/wt [current_project]
   catch { write_mem_info -force Top.mmi }

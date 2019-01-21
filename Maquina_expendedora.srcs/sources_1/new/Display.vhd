@@ -32,6 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Display is
+          Generic(
+            frec : integer := 50000000);
           Port (
             clk : in  STD_LOGIC;
             segment_0 : IN std_logic_vector(6 downto 0);
@@ -49,11 +51,26 @@ end Display;
 
 architecture Behavioral of Display is
     signal cnt : integer :=0;
+    signal clk2 : STD_LOGIC;
+    signal count : integer := 0;
  begin
  
- cnt_sum: process (clk)
+ clk_2: process(clk)
+ begin
+    if (rising_edge(clk)) then
+        if (count = frec) then
+            count <= 0;
+            clk2 <= not clk2;
+        else 
+            count <= count + 1;
+        end if;
+    end if;
+end process;
+ 
+ 
+ cnt_sum: process (clk2)
  begin 
-            if( rising_edge(clk)) then 
+            if( rising_edge(clk2)) then 
                     cnt <= cnt +1;
                     if ( cnt = 7) then
                           cnt <= 0;

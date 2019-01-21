@@ -22,6 +22,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity Returns is
+    GENERIC(
+        frec : integer := 50000000);
     PORT(
         clk : in STD_LOGIC;
         returns_en : in STD_LOGIC;
@@ -54,7 +56,7 @@ architecture Behavioral of Returns is
     signal ss8 : STD_LOGIC_VECTOR (7 DOWNTO 0);
     --Señal contador
     signal counter : integer := 0;
-    signal counter2 : integer := 0;
+    signal clk2 : STD_LOGIC := '0';
 begin
     --------------------------------------------
     ----Sincronizacion de la salida con clk-----
@@ -72,6 +74,21 @@ begin
             s7 <= ss7;
             s8 <= ss8;
             output_ret <= soutput_ret;
+        end if;
+    end process;
+    
+    --------------------------------------------
+    ----Creacion de pulso de reloj de 1 Hz------
+    --------------------------------------------
+    clk_2: process(clk)
+     begin
+        if (rising_edge(clk)) then
+            if (counter = frec) then
+                counter <= 0;
+                clk2 <= not clk2;
+            else 
+                counter <= counter + 1;
+            end if;
         end if;
     end process;
     
@@ -108,29 +125,9 @@ begin
     --Contador para el tiempo en el que debe de 
     -- estar en el estado de returns 
     --------------------------------------------
-    cont_ini: process(returns_en, clk, counter)
+    cont_ini: process(returns_en, clk2, counter)
     begin
-        if (rising_edge(clk)) then
-            counter <= counter + 1;
-        end if;
-        
-        --Inicializamos el contador
-        if (returns_en = '0') then
-            counter <= 0;
-            counter2 <= 0;
-        end if;
-        
-        --Evolucion del segundo contador (En ms)
-        if (counter = 10000000) then
-            counter2 <= counter2 + 1;
-            counter <= 0;
-        end if;
-        
-        -----------------------------------------
-        -- Si el contador es mayor de 2 segundos
-        -- activa la señal de salida del estado
-        -----------------------------------------
-        if (counter2 = 2000) then
+        if (clk2 = '1') then
             eor <= '1';
         else
             eor <= '0';

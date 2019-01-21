@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date         : Mon Jan 21 11:55:19 2019
+| Date         : Mon Jan 21 18:09:40 2019
 | Host         : DESKTOP-4MBK26K running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
@@ -23,8 +23,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    12 |
-| Unused register locations in slices containing registers |    30 |
+| Number of unique control sets                            |    11 |
+| Unused register locations in slices containing registers |    20 |
 +----------------------------------------------------------+-------+
 
 
@@ -36,7 +36,7 @@ Table of Contents
 +--------+--------------+
 |      2 |            2 |
 |      6 |            1 |
-|    16+ |            9 |
+|    16+ |            8 |
 +--------+--------------+
 
 
@@ -46,9 +46,9 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             242 |           52 |
-| No           | No                    | Yes                    |              64 |            8 |
-| No           | Yes                   | No                     |             240 |           44 |
+| No           | No                    | No                     |             152 |           36 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |             340 |           55 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
@@ -62,17 +62,16 @@ Table of Contents
 |           Clock Signal          | Enable Signal |         Set/Reset Signal         | Slice Load Count | Bel Load Count |
 +---------------------------------+---------------+----------------------------------+------------------+----------------+
 |  Inst_cm/correcto_reg/G0        |               |                                  |                1 |              2 |
-|  Inst_cm/overflow0_carry__2_n_2 |               | Inst_cm/overflow_reg_i_1_n_2     |                1 |              2 |
-|  Inst_ss/s_output               |               |                                  |                1 |              6 |
-|  Inst_ss/E[0]                   |               |                                  |                5 |             24 |
-|  clock_IBUF_BUFG                |               | Inst_sb/output_stb               |                7 |             26 |
-|  clock_IBUF_BUFG                |               | Inst_Dis/cnt[31]_i_1_n_2         |                8 |             62 |
-|  n_1_2198_BUFG                  |               | Inst_cm/contador_reg[31]_i_2_n_2 |               11 |             64 |
-|  n_0_1981_BUFG                  |               |                                  |               11 |             64 |
-|  clock_IBUF_BUFG                |               | n_0_1981_BUFG                    |                8 |             64 |
-|  correcto                       |               |                                  |               15 |             64 |
-|  clock_IBUF_BUFG                |               |                                  |               19 |             82 |
-|  clock_IBUF_BUFG                |               | Inst_cm/p_0_in_0                 |               17 |             86 |
+|  Inst_cm/overflow0_carry__2_n_1 |               | Inst_cm/overflow_reg_i_1_n_1     |                1 |              2 |
+|  Inst_ss/s_output               |               |                                  |                3 |              6 |
+|  Inst_ss/E[0]                   |               |                                  |                6 |             24 |
+|  clock_IBUF_BUFG                |               |                                  |               14 |             56 |
+|  clock_IBUF_BUFG                |               | Inst_Dis/clk2                    |                8 |             62 |
+|  clock_IBUF_BUFG                |               | Inst_Rt/clk2_0                   |                8 |             62 |
+|  correcto                       |               |                                  |               12 |             64 |
+|  n_0_2114_BUFG                  |               | Inst_cm/contador_reg[31]_i_2_n_1 |               12 |             64 |
+|  cnt_reg[31]_i_3_n_1            |               | Inst_Dis/cnt[31]_i_1_n_1         |                9 |             64 |
+|  clock_IBUF_BUFG                |               | Inst_cm/Salida_correcto_reg_1    |               17 |             86 |
 +---------------------------------+---------------+----------------------------------+------------------+----------------+
 
 

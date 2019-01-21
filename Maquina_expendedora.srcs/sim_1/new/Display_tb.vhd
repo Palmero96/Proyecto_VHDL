@@ -37,7 +37,10 @@ end Display_tb;
 
 architecture Behavioral of Display_tb is
 
-component display Port (
+component display 
+        Generic(
+            frec : integer := 50000000);
+        Port (
             clk : in  STD_LOGIC;
             segment_0 : IN std_logic_vector(6 downto 0);
             segment_1 : IN std_logic_vector(6 downto 0);
@@ -69,7 +72,10 @@ component display Port (
                
 begin
 
-uut: display port map(
+uut: display 
+    Generic map(
+        frec => 50000000)
+    port map(
         Clk =>Clk,
        segment_0 => segment_0,
        segment_1 => segment_1,

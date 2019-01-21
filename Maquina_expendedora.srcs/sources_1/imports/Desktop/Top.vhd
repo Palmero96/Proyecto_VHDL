@@ -124,7 +124,10 @@ architecture Structural of Top is
         );
     end component;
     
-    component Returns PORT(
+    component Returns 
+    GENERIC(
+        frec : integer := 200000000);
+    PORT(
         clk : in STD_LOGIC;
         returns_en : in STD_LOGIC;
         s1 : out STD_LOGIC_VECTOR (7 DOWNTO 0);
@@ -146,7 +149,10 @@ architecture Structural of Top is
     );
     end component;
     
-    component Display PORT(
+    component Display 
+    GENERIC(
+        frec: integer := 50000000);
+    PORT(
         clk : in STD_LOGIC;
         segment_0 : in STD_LOGIC_VECTOR (6 DOWNTO 0);
         segment_1 : in STD_LOGIC_VECTOR (6 DOWNTO 0);
@@ -373,7 +379,10 @@ begin
 ----------------------------------------------------------------------
 ------------------Instanciacion de la entidad Show--------------------
 ----------------------------------------------------------------------
-    Inst_Rt: Returns PORT MAP(
+    Inst_Rt: Returns 
+    GENERIC MAP(
+        frec => 50000000)
+    PORT MAP(
         clk => clock,
         returns_en => s_returns,
         s1 => re1,
@@ -434,16 +443,19 @@ begin
 ----------------------------------------------------------------------
 -----------------Instanciacion de la entidad Display------------------
 ----------------------------------------------------------------------
-    Inst_Dis: Display PORT MAP(
+    Inst_Dis: Display 
+    GENERIC MAP(
+        frec => 100000)
+    PORT MAP(
         clk => clock,
-        segment_0 => d1,
-        segment_1 => d2,
-        segment_2 => d3,
-        segment_3 => d4,
-        segment_4 => d5,
-        segment_5 => d6,
-        segment_6 => d7,
-        segment_7 => d8,
+        segment_0 => d8,
+        segment_1 => d7,
+        segment_2 => d6,
+        segment_3 => d5,
+        segment_4 => d4,
+        segment_5 => d3,
+        segment_6 => d2,
+        segment_7 => d1,
         display_number => mensaje,
         display_selection => display_select
     );
