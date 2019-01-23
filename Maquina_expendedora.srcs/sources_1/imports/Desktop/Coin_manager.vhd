@@ -60,6 +60,7 @@ begin
                 elsif (contador = 100) then
                     overflow <= '0';
                     correcto <= '1';
+                    contador <= 0;
                 elsif (contador > 100) then
                     contador <= 0;
                     overflow <= '1';

@@ -57,6 +57,8 @@ architecture Behavioral of Returns is
     --Señal contador
     signal counter : integer := 0;
     signal clk2 : STD_LOGIC := '0';
+    
+    signal bandera : STD_LOGIC := '0';
 begin
     --------------------------------------------
     ----Sincronizacion de la salida con clk-----
@@ -87,7 +89,11 @@ begin
                 counter <= 0;
                 clk2 <= not clk2;
             else 
-                counter <= counter + 1;
+                if (bandera = '1') then
+                    counter <= counter + 1;
+                elsif (bandera = '0') then
+                    counter <= 0;
+                end if;
             end if;
         end if;
     end process;
@@ -99,6 +105,7 @@ begin
     asignacion: process(returns_en)
     begin
         if (returns_en = '1') then
+            bandera <= '1';
             ss1 <= "01010010"; --R
             ss2 <= "01000101"; --E
             ss3 <= "01010100"; --T
@@ -109,6 +116,7 @@ begin
             ss8 <= "01001110"; --N
             soutput_ret <= '1';
         else 
+            bandera <= '0';
             ss1 <= ss1;
             ss2 <= ss2;
             ss3 <= ss3;
