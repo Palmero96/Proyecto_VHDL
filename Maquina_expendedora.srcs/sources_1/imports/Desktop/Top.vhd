@@ -126,7 +126,7 @@ architecture Structural of Top is
     
     component Returns 
     GENERIC(
-        frec : integer := 200000000);
+        frec : integer := 50000000);
     PORT(
         clk : in STD_LOGIC;
         returns_en : in STD_LOGIC;
